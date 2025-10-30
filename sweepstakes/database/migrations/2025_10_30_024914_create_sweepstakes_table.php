@@ -12,11 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('sweepstakes', function (Blueprint $table) {
-            $table->uuid("id")->primary();
-            $table->foreign("user_id")->constrained();
-            $table->integer("number_of_winners")->default(1);
-            $table->dateTime("end_date")->nullable();
-            $table->text("description")->nullable();
+            $table->uuid('id')->primary();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->integer('number_of_winners')->default('1');
+            $table->dateTime('end_date')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }
