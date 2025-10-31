@@ -3,9 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\User;
+
 
 class Sweepstake extends Model
 {
+    use HasUuids;
+
     protected $fillable = [
         'user_id',
         'number_of_winners',
@@ -13,7 +19,9 @@ class Sweepstake extends Model
         'description'
     ];
 
-    protected $keyType = 'string';
+    /* Hoje em dia não se usa mais esse método de Uuid
+    /* ===============================================
+    /*protected $keyType = 'string';
 
     public $incrementing = false;
 
@@ -25,7 +33,7 @@ class Sweepstake extends Model
                 $model->id = Str::uuid();
             }
         });
-    }
+    }*/
 
     public function user() {
         return $this->belongsTo(User::class);
